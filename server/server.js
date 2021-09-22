@@ -7,7 +7,11 @@ const path = require('path');
 
 const app = express();
 
-app.use(cors());
+//Setting the cors
+var corsOptions = {
+    origin: "http://localhost:4200"
+  };
+app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -25,9 +29,9 @@ mongoose.connect(dbConfig.url, {
         console.log('Database could not be connected : ' + error)
     }
 )
-
+// Routes
 require("../routes/pto.route")(app);
-require("../routes/serie.route")(app);
+require("../routes/service.route")(app);
 
 const port = process.env.PORT || 8080
 app.listen(port, () => {
@@ -38,6 +42,7 @@ app.listen(port, () => {
 app.use((req, res, next) => {
     next(createError(404));
 });
+
 
 // Index Route
 app.get('/', (req, res) => {

@@ -9,7 +9,8 @@ exports.create = (req, res) => {
     // Create an E-Pto
     const pto = new ptoSchema({
       vognNr: req.body.vognNr,
-      fejlName: req.body.fejlName
+      serieNr: req.body.serieNr,
+      fejlName: req.body.fejlName 
     });
     console.log(pto);
     // Save E-PTO in the database
@@ -24,6 +25,8 @@ exports.create = (req, res) => {
             err.message || "Some error occurred while creating the E-PTO."
         });
       });
+
+      
 
   }; // create end
 
