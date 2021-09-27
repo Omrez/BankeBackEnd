@@ -6,11 +6,12 @@ let ServiceSchema = new Schema({
         type: String,
         required: true
     },
-    årsag: [{
-        type: String,
-        required: true
+    causes:[{
+
+     name: String 
+
     }],
-    løsning: [{
+    solutions: [{
         type: String,
         required: true
     }],

@@ -7,8 +7,9 @@ exports.create = (req, res) => {
     // Create a Problem Service
     const service = new ServiceSchema({
       serviceProblem: req.body.serviceProblem,
-      årsag: req.body.årsag,
-      løsning: req.body.løsning 
+      causes: req.body.causes,
+      name: req.body.name,
+      solutions: req.body.solutions 
     });
     console.log(service);
     // Save Problem Service in the database
