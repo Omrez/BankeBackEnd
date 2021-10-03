@@ -1,20 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let ServiceSchema = new Schema({
-    serviceProblem: {
-        type: String,
-        required: true
-    },
-    causes:[{
-
-    
-
-    }],  
-    solutions: [{
-        type: String,
-        required: true
-    }],
+let CausesSchema = new Schema({
+    name: {type: String},
+    id: {type: Number},
     createdAt:{ type: Date, default: Date.now },
 
 }
