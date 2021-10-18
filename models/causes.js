@@ -16,4 +16,4 @@ ServiceSchema.method("toJSON", function() {
     return object;
   });
 
-module.exports = mongoose.model('serviceproblem',ServiceSchema)
+module.exports = mongoose.model('cause',ServiceSchema)
