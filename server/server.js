@@ -5,7 +5,9 @@ const dbConfig = require("../config/db.config");
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const Role = require('../models/role.model');
+const db = require('../models');
+const Role = db.role;
+
 
 
 const app = express();

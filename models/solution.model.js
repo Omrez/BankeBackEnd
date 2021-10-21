@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let CausesSchema = new Schema({
+let SolutionSchema = new Schema({
     name: {type: String}
 }
 
 
 );
-module.exports = mongoose.model('cause',CausesSchema)
+module.exports = mongoose.model('solution',SolutionSchema)

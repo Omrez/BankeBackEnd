@@ -8,12 +8,13 @@ let ServiceSchema = new Schema({
     },
     causes:[{
         
-    
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "cause"
 
     }],  
     solutions: [{
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "solution"
     }],
     createdAt:{ type: Date, default: Date.now },
 
