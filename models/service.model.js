@@ -8,7 +8,7 @@ let ServiceSchema = new Schema({
     },
     causes:[{
         
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "cause"
 
     }],  
@@ -22,10 +22,4 @@ let ServiceSchema = new Schema({
 
 
 );
-ServiceSchema.method("toJSON", function() {
-    const { __v, _id, ...object } = this.toObject();
-    object.id = _id;
-    return object;
-  });
-
 module.exports = mongoose.model('serviceproblem',ServiceSchema)

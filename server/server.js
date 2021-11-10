@@ -39,6 +39,8 @@ require("../routes/auth.routes")(app);
 require("../routes/user.routes")(app);
 require("../routes/pto.route")(app);
 require("../routes/service.route")(app);
+require("../routes/cause.route")(app);
+require("../routes/solution.route")(app);
 
 
 

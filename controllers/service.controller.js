@@ -1,90 +1,78 @@
 const db = require("../models/service.model");
 const ServiceSchema = require("../models/service.model");
+const CausesSchema = require("../models/causes.model");
+const SolutionSchema = require("../models/solution.model");
 
+module.exports = {
 
-exports.create = (req, res) => {
+    addService: async (req, res, next) => {
+
+        const newService = new ServiceSchema(req.body);
+        const service = await newService.save();
+        res.status(201).json(service);
+    },
+
+    getService: async (req, res, next) => {
+       
+        const id = req.params.id;
+        const service = await ServiceSchema.findById(id);
+        res.status(200).json(service);
+
+        res.status(400).json({message: err.message});
+      
+    },
+
+    getServiceCause: async (req, res, next) => {
+        const id = req.params.id;
+        const service = await ServiceSchema.findById(id);
+        console.log("service", service);
+    },
+
+    addServiceCause: async (req, res, next) => {
+      try {
+        const id = req.params.id;
+        const newCause = new CausesSchema(req.body);
+
+        const service = await ServiceSchema.findById(id);
+
+        newCause.serviceType = service;
+
+        await newCause.save();
+
+        service.causes.push(newCause._id);
+
+        await service.save();
+        res.status(201).json(newCause);
+      } catch (err) {
+          next(err);
+      }
+    },
+
+    addServiceSolution: async (req, res, next) => {
     
-    // Create a Problem Service
-    const service = new ServiceSchema({
-      serviceProblem: req.body.serviceProblem,
-      causes: req.body.causes,
-      name: req.body.name,
-      solutions: req.body.solutions 
-    });
-    console.log(service);
-    // Save Problem Service in the database
-    service
-      .save(service)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the E-PTO."
-        });
-      });
+        const id = req.params.id;
+        const newSolution = new SolutionSchema(req.body);
 
-  }; // create end
+        const service = await ServiceSchema.findById(id);
 
-  // Find all Problem Services
-  exports.findAll = (req, res) => {
-    const serviceProblem = req.query.serviceProblem;
-    var condition = serviceProblem ? { serviceProblem: { $regex: new RegExp(serviceProblem), $options: "i" } } : {};
-  
-    ServiceSchema.find(condition)
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving tutorials."
-        });
-      });
+        newSolution.serviceType = service;
 
-  }; //findall method end
+        await newSolution.save();
 
-   // Find Problem Service with an ID
-   exports.findOne = (req, res) => {
-    const id = req.params.id;
-  
-    ServiceSchema.findById(id)
-      .then(data => {
-        if (!data)
-          res.status(404).send({ message: "Not found E-PTO with id " + id });
-        else res.send(data);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .send({ message: "Error retrieving E-PTO with id=" + id });
-      });
-  }; //findOne method end
+        service.solutions.push(newSolution._id);
 
-  // Update Problem Service with ID
-  exports.update = (req, res) => {
-    if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
+        await service.save();
+        res.status(201).json(newSolution);
+
     }
-  
-    const id = req.params.id;
-  
-    ServiceSchema.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-      .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update E-PTO with id=${id}. Maybe E-PTO was not found!`
-          });
-        } else res.send({ message: "E-PTO was updated successfully." });
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating E-PTO with id=" + id
-        });
-      });
-  };// Update method end
 
 
+
+
+
+
+
+
+
+
+}

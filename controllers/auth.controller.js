@@ -107,3 +107,25 @@ exports.signin = (req, res) => {
       });
     });
 };
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  user.findByIdAndRemove(id)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete E-PTO with id=${id}. Maybe E-PTO was not found!`
+        });
+      } else {
+        res.send({
+          message: "E-PTO was deleted successfully!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete E-PTO with id=" + id
+      });
+    });
+}; // Delete method end

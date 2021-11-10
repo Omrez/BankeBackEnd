@@ -1,19 +1,13 @@
 module.exports = app => {
-    const service = require("../controllers/service.controller.js");
+    const cause = require("../controllers/cause.controller.js");
   
     var router = require("express").Router();
   
     // Create a new E-PTO
-    router.post("/service", service.addService);
+    router.post("/cause", cause.addCause);
+    router.get("/cause/:id", cause.getCause);
 
-    router.get("/service/:id", service.getService);
-
-    router.get("/service/:id/causes", service.getServiceCause);
-    router.post("/service/:id/causes", service.addServiceCause);
-
-    router.post("/service/:id/solutions", service.addServiceSolution);
-
-    //router.post("/cause", service.createCause);
+   // router.post("/cause", service.createCause);
   
    /* // Retrieve all E-PTO
     router.get("/", service.findAll);
