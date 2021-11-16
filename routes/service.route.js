@@ -4,31 +4,22 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new E-PTO
-    router.post("/service", service.addService);
-
-    router.get("/service/:id", service.getService);
-
-    router.get("/service/:id/causes", service.getServiceCause);
-    router.post("/service/:id/causes", service.addServiceCause);
-
-    router.post("/service/:id/solutions", service.addServiceSolution);
-
-    //router.post("/cause", service.createCause);
+    router.post("/service", service.createService);
   
-   /* // Retrieve all E-PTO
-    router.get("/", service.findAll);
+    // Retrieve all E-PTO
+    router.get("/service", service.getServices);
  
     // Retrieve a single E-PTO with id
-    router.get("/:id", service.findOne);
+    router.get("/service/:id", service.getServiceId);
    
     // Update a E-PTO with id
-    router.put("/:id", service.update);
+    router.put("/service/:id", service.updateService);
   
     // Delete a E-PTO with id
-    router.delete("/:id", service.delete);
-  
+    router.delete("/service/:id", service.deleteServiceId);
+  /*
     // Delete all E-PTO
-    router.delete("/", service.deleteAll);
-  */
-    app.use(router);
+    router.delete("/", service.deleteAll);*/
+  
+    app.use( router);
   };

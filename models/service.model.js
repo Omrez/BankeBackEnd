@@ -8,7 +8,7 @@ let ServiceSchema = new Schema({
     },
     causes:[{
         
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "cause"
 
     }],  

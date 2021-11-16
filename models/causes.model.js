@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 let CausesSchema = new Schema({
     name: [{type: String}],
     serviceType: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "serviceproblem"
     }
 
