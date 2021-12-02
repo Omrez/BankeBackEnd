@@ -17,6 +17,9 @@ module.exports = app => {
   
     // Delete a E-PTO with id
     router.delete("/service/:id", service.deleteServiceId);
+
+    //
+    router.post('/service/:id/cause', service.addCauseToService)
   /*
     // Delete all E-PTO
     router.delete("/", service.deleteAll);*/
