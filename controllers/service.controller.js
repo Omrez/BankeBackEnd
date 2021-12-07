@@ -1,6 +1,7 @@
 const db = require("../models/service.model");
 const ServiceSchema = require("../models/service.model");
 const causeSchema = require("../models/causes.model");
+const solutionSchema = require("../models/solution.model");
 
 
 
@@ -105,10 +106,22 @@ module.exports = {
         const newCause = new causeSchema(req.body);
         const service = await ServiceSchema.findById(id);
         newCause.serviceType = service;
-        await newCause.save();
+        newCause.save();
         service.causes.push(newCause._id);
-        await service.save().then(data => {res.send(data)});
+        service.save().then(data => {res.send(data)});
+    },
+
+    addSolutionToService: async (req, res) => {
+        const id = req.params.id;
+        const newSolution = new solutionSchema(req.body);
+        const service = await ServiceSchema.findById(id);
+        newSolution.serviceType = service;
+        newSolution.save();
+        service.solutions.push(newSolution._id);
+        service.save().then(data => {res.send(data)});
+
     }
+
 
 
 } // Module exports end ////
