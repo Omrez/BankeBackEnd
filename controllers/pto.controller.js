@@ -5,7 +5,6 @@ const ptoSchema = require("../models/pto.model");
 exports.create = (req, res) => {
     
    
-  
     // Create an E-Pto
     const pto = new ptoSchema({
       vognNr: req.body.vognNr,

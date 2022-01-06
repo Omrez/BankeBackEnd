@@ -5,7 +5,7 @@ const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
-
+// sign up Controller
 exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -61,7 +61,7 @@ exports.signup = (req, res) => {
     }
   });
 };
-
+// Sign in controller
 exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
